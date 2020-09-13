@@ -86,7 +86,7 @@ const engineerQuestions = [
 
 
 //questions for intern
-const engineerQuestions = [
+const internQuestions = [
     {
         type: 'input',
         name: 'internName',
@@ -108,3 +108,57 @@ const engineerQuestions = [
         message: 'Enter the school of this intern oterwise type "N/A" '
     }
 ]
+
+// this question will prompt the manager if they want to add another engineer or intern or if they are done with creating their team.
+const anotherQuestion = [
+    {
+        type: 'list',
+        name: 'another employee',
+        message: 'Select the type of team member you would like to add next and if you are done, select "Done" to generate your team ',
+        choices: ['Engineer', 'Intern', 'Done']
+    }
+]
+
+
+/**
+ * This function prompts the manager
+ * to supply answers to questions
+ * in managerQuestions array
+ */
+function managerPrompt() {
+    inquirer.prompt(managerQuestions).then((response) => {
+        const { managerName, managerID, managerEmail, office } = response;
+        // create a new manager object/instance
+        const manager = new Manager(managerName, managerID, managerEmail, office);
+        teamArray.push(manager);
+    })
+}
+
+
+/**
+ * This function prompts the manager
+ * to answer questions pertaining
+ * to the engineerQuestions array
+ */
+function engineerPrompt() {
+    inquirer.prompt(engineerQuestions).then((response) => {
+        const { engineerName, engineerID, engineerEmail, github } = response;
+        //create a new instance of an engineer
+        const engineer = new Engineer(engineerName, engineerID, engineerEmail, github);
+        teamArray.push(engineer);
+    })
+}
+
+/**
+ * This function prompts the manager
+ * to answer questions pertaining
+ * to the intern(internQuestions)
+ */
+function internPrompt() {
+    inquirer.prompt(internQuestions).then((response) => {
+        const { internName, internID, internEmail, school } = response;
+        // create a new instance of an intern
+        const intern = new Intern(internName, internID, internEmail, school);
+        teamArray.push(intern);
+    })
+}
