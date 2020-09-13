@@ -33,3 +33,78 @@ const render = require("./lib/htmlRenderer");
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
+
+const teamArray = [];
+
+//questions for manager
+const managerQuestions = [
+    {
+        type: 'input',
+        name: 'managerName',
+        message: 'Please enter the name of the manager of this team or your name if you are the manager'
+    },
+    {
+        type: 'input',
+        name: 'managerID',
+        message: 'Please enter the id of the manager of this team or your id if you are the manager'
+    },
+    {
+        type: 'input',
+        name: 'managerEmail',
+        message: 'Please enter the email address of the manager of this team or your email address if you are the manager'
+    },
+    {
+        type: 'input',
+        name: 'office',
+        message: 'Please enter the office number of the manager of this team or your office number if you are the manager'
+    }
+]
+
+//questions for engineer
+const engineerQuestions = [
+    {
+        type: 'input',
+        name: 'engineerName',
+        message: 'Enter the name of this engineer'
+    },
+    {
+        type: 'input',
+        name: 'engineerID',
+        message: 'Enter the ID of this engineer'
+    },
+    {
+        type: 'input',
+        name: 'engineerEmail',
+        message: 'Enter the email address of this engineer'
+    },
+    {
+        type: 'input',
+        name: 'github',
+        message: 'Enter the github address of this engineer'
+    }
+]
+
+
+//questions for intern
+const engineerQuestions = [
+    {
+        type: 'input',
+        name: 'internName',
+        message: 'Enter the name of this intern'
+    },
+    {
+        type: 'input',
+        name: 'internID',
+        message: 'Enter the ID of this intern'
+    },
+    {
+        type: 'input',
+        name: 'internEmail',
+        message: 'Enter the email address of this intern'
+    },
+    {
+        type: 'input',
+        name: 'school',
+        message: 'Enter the school of this intern oterwise type "N/A" '
+    }
+]
