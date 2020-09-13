@@ -113,7 +113,7 @@ const internQuestions = [
 const anotherQuestion = [
     {
         type: 'list',
-        name: 'another employee',
+        name: 'anotherEmployee',
         message: 'Select the type of team member you would like to add next and if you are done, select "Done" to generate your team ',
         choices: ['Engineer', 'Intern', 'Done']
     }
@@ -131,6 +131,7 @@ function managerPrompt() {
         // create a new manager object/instance
         const manager = new Manager(managerName, managerID, managerEmail, office);
         teamArray.push(manager);
+        next();
     })
 }
 
@@ -146,6 +147,7 @@ function engineerPrompt() {
         //create a new instance of an engineer
         const engineer = new Engineer(engineerName, engineerID, engineerEmail, github);
         teamArray.push(engineer);
+        next();
     })
 }
 
@@ -160,5 +162,42 @@ function internPrompt() {
         // create a new instance of an intern
         const intern = new Intern(internName, internID, internEmail, school);
         teamArray.push(intern);
+        next();
     })
 }
+
+/**
+ * This function prompts the manager
+ * to select the next type of
+ * employee they are adding
+ * it supplies answers to the anotherQuestion array
+ */
+function next() {
+    inquirer.prompt(anotherQuestion).then((response) => {
+        if (response.anotherEmployee === 'Engineer') {
+            engineerPrompt();
+            return;
+        }
+        if (response.anotherEmployee === 'Intern') {
+            internPrompt();
+            return;
+        }
+        console.log('Done creating your team!')
+        makeTeam();
+    })
+}
+
+/**
+ * This function is responsible
+ * for making the file(team.html)
+ */
+function makeTeam() {
+    fs.writeFile(outputPath, render(teamArray), (err) => {
+        if (err) {
+            return console.log('ERR', err);
+        }
+    })
+}
+
+//this initiates the whole CLI process
+managerPrompt();
